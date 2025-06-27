@@ -1,0 +1,191 @@
+/* To make the .css code more readable we split it into different sections
+check README.md for more information about imported .css files */
+@import url('normalize.css');
+@import url('run-for-narrow-screen.css');
+@import url('run-for-wide-screen.css');
+@import url('nav-bar.css');
+@import url('photo-gallery.css');
+@import url('news-photo-gallery.css'); /* not used */
+@import url('scroll-progress.css');
+
+/* When you have trouble seeing changes on website press ctrl + F5 in your internet browser */
+
+/*
+ CSS styles for the website
+ This file contains the main styles for the website, including typography and colors.
+ It also includes styles for various components such as buttons, tables, and sections.
+*/
+:root {
+  --body-font-family: 'Trebuchet MS', sans-serif;
+  --body-font-color: black;
+  --body-background-color: white;
+  
+  --h2-color: white;
+
+  --h2-background-color: #00a2ff;
+
+  --h3-color: #00a2ff;
+
+  --h4-color: white;
+
+  --p-color: black;
+
+  --table-background-color: #f9f9f9;
+
+  --paragraph-header-01-color: #00a2ff;
+
+  --section-color: #00a2ff;
+  --section-background-color: rgba(255, 255, 255, 0.5); /* 50% transparent white */
+
+  --button-link-color: white;
+  --button-link-background-color: #007BFF;
+  --button-link-hover-color: #0056b3;
+
+  --toggle-button-background-color: #007BFF;
+  --toggle-button-color: white;
+
+  --toggle-button-hover-background-color: #0056b3;
+
+  --circle-image-border-color: #000000;
+}
+
+body {
+  font-family: var(--body-font-family);
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  /* color of the website background */
+  /* color of the website font (overwritten by code in section block!) */
+  background-color: var(--body-background-color);
+
+  /* image background settings */
+  /* Add a semi-transparent overlay to the background */
+    position: relative; /* Ensure the body is the parent for the overlay */
+    background-image: url('../images/background.jpg'); /* Adjust the path to your image */
+    background-size: contain; /* Ensures the image covers the entire background */
+    background-repeat: repeat; /* Prevents the image from repeating */
+    background-position: top; /* Centers the image */
+    color: var(--body-font-color); /* Ensure text is readable */
+}
+
+/* image background settings */
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.75); /* Semi-transparent white overlay */
+  z-index: -1; /* Place it behind the content */
+}
+
+/* header tag settings */
+h2 {
+  font-size: 21px;
+  color: var(--h2-color);
+  background-color: var(--h2-background-color); /* Tło w kolorze CMYK ffce04ff (HEX #FFC704) */
+  padding: 8px; /* Opcjonalnie: odstęp między tekstem a krawędzią tła */
+  border-radius: 4px; /* Opcjonalnie: zaokrąglenie rogów */
+}
+
+h3 {
+  color: var(--h3-color);
+}
+
+h4 {
+  color: var(--h4-color);
+}
+
+/* paragraph tag settings */
+p {
+  font-size: 18px; /* Change this value to your desired font size */
+  color: var(--p-color);
+}
+
+/* paragraph classes*/
+.paragraph-header-01 {
+  font-size: 19px; /* Change this value to your desired font size */
+  color: var(--paragraph-header-01-color);
+}
+
+/* section settings */
+section {
+  text-align: center;
+  padding: 50px;
+  width: 80%;
+  max-width: 800px;
+  color: var(--section-color);
+  background-color: var(--section-background-color);
+}
+
+/* button that is used for links */
+.button-link {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: var(--button-link-color);
+  background-color: var(--button-link-background-color);
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  margin: 5px 0;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.button-link:hover {
+  background-color: var(--button-link-hover-color);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  transform: scale(1.1); /* Slightly enlarges the button */
+}
+
+#toggle-button {
+    background-color: var(--toggle-button-background-color);
+    color: var(--toggle-button-color);
+    border: none; /* Usuń obramowanie */
+    padding: 10px 20px; /* Wewnętrzne odstępy */
+    font-size: 16px; /* Rozmiar czcionki */
+    cursor: pointer; /* Wskaźnik myszki */
+    border-radius: 5px; /* Zaokrąglenie rogów */
+  }
+
+#toggle-button:hover {
+    background-color: var(--toggle-button-hover-background-color);
+}
+
+/* table settings */
+.center-table {
+  display: flex;
+  justify-content: center;
+}
+
+table {
+  border-collapse: collapse;
+  width: auto;
+  text-align: left;
+  background-color: var(--table-background-color); /* comment this line if you want table background to be transparent */
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+th {
+  background-color: #f4f4f4;
+  text-align: center;
+}
+
+/* logo settings */
+.circle-image {
+    width: 250px; /* Adjust the size as needed */
+    height: 250px; /* Ensure the height matches the width for a perfect circle */
+    border-radius: 50%; /* This makes the image circular */
+    object-fit: cover; /* Ensures the image fits within the circle */
+    border: 2px solid var(--circle-image-border-color);
+}

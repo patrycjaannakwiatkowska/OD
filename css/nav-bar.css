@@ -1,0 +1,139 @@
+/*
+  nav-bar.css
+  ------------------
+  This file contains the styles for the main navigation bar of the website.
+  It defines the appearance, layout, and interactive states (hover, active) of navigation links.
+  
+  CSS Variables:
+    --nav-background-color: Background color of the navigation bar.
+    --nav-a-color: Default color of navigation links.
+    --nav-a-hover-first-color, --nav-a-hover-second-color: Gradient colors for link hover underline.
+    --nav-a-border-bottom-color: Border color for active link state.
+    --nav-a-active-color: Text color for the active link.
+    --nav-a-active-background-color: Background color for the active link.
+    --nav-a-active-border-bottom-color: Border color for the active link.
+*/
+:root {
+  --nav-background-color: #fff9f2;
+  --nav-a-color: #242424;
+  --nav-a-hover-first-color: #0077ff;
+  --nav-a-hover-second-color: #0077ff;
+  --nav-a-border-bottom-color: #0077ff; /* Border color for active state */
+  --nav-a-active-color: #fff9f2;
+  --nav-a-active-background-color: #0077ff;
+  --nav-a-active-border-bottom-color: #0077ff;
+}
+  
+/*
+  Scroll Progress Bar
+  ------------------
+  A thin bar at the top of the page that fills as the user scrolls.
+  (Moved to css/scroll-progress.css)
+*/
+
+/*
+  Navigation Bar Layout
+  --------------------
+  The nav element is styled as a fixed horizontal bar at the top of the viewport.
+  It uses flexbox to arrange its child links in a row, centers them vertically,
+  and ensures it stays above other content with a high z-index.
+*/
+nav {
+    font-size: 16px;
+    position: fixed; /* or absolute, depending on your layout */
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* A high value to ensure it is above other elements */
+    background-color: var(--nav-background-color);
+    max-height: 100vh; /* Set the maximum height to the viewport height */
+    overflow-x: auto; /* Add horizontal scrollbar if content overflows */
+    display: flex;
+    justify-content: flex-start; /* Align items to the start */
+    flex-direction: row; /* Stack items horizontally */
+    align-items: center; /* Center items vertically */
+    padding: 0 20px;
+  }
+  
+/*
+  Navigation Links
+  ----------------
+  Styles for <a> elements inside the nav bar. Includes padding, color, spacing,
+  and a smooth transition for color, border, and transform changes.
+  The border-top is transparent by default to avoid layout shift on hover/active.
+*/
+nav a {
+    color: var(--nav-a-color);
+    padding: 14px 16px;
+    text-decoration: none;
+    margin: 0 5px;
+    border-top: 2px solid transparent; /* Add transparent border */
+    transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-bottom 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative; /* Needed for pseudo-element */
+  }
+
+/*
+  Hover and Focus States
+  ---------------------
+  On hover or focus, links are slightly raised and a subtle box-shadow is added.
+  This provides a tactile, interactive feel.
+*/
+  nav a:hover,
+  nav a:focus {
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 4px 16px 0 rgba(0, 119, 255, 0.10), 0 1.5px 6px 0 rgba(0,0,0,0.04);
+    z-index: 2;
+  }
+
+/*
+  Animated Underline Effect
+  ------------------------
+  Uses a pseudo-element (::after) to create a gradient underline that animates in on hover.
+  The underline is hidden (scaleX(0)) by default and expands to full width on hover.
+*/
+  nav a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 6px;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--nav-a-hover-first-color) 0%, var(--nav-a-hover-second-color) 100%);
+    filter: blur(0.5px);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  nav a:hover::after {
+    transform: scaleX(1);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+/*
+  Active Link State
+  ----------------
+  The .active class highlights the current page's link with a different background,
+  text color, bold font, and a solid border at the bottom.
+*/
+  nav a.active {
+    color: var(--nav-a-active-color);
+    background-color: var(--nav-a-active-background-color);
+    font-weight: bold;
+    border-bottom: 2px solid var(--nav-a-active-border-bottom-color); /* Ensure active state has the same border */
+    position: relative;
+  }
+  
+/*
+  Flexbox Centering
+  -----------------
+  The nav::before and nav::after pseudo-elements are used to help center the navigation items
+  within the nav bar by acting as flexible spacers.
+*/
+  nav::before,
+  nav::after {
+    content: '';
+    flex: 1;
+  }
