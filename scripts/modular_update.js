@@ -15,26 +15,34 @@ document.getElementById('current-year').textContent = new Date().getFullYear();
 
 
 
-// Update the email link dynamically
+// Update email link dynamically
 const emailElement = document.getElementById("email_link");
-// emailAddress is set in the variables.js file
-emailElement.href = `mailto:${emailAddress}`;
-emailElement.textContent = emailAddress;
+if (emailElement) {
+	// emailAddress is set in the variables.js file
+	emailElement.href = `mailto:${emailAddress}`;
+	emailElement.textContent = emailAddress;
+}
 
 // Update the google maps link (if used)
 const googleMapsElement = document.getElementById("google_maps_link");
-// google_maps_link and google_maps_link_button_text is set in the variables.js file
-googleMapsElement.href = google_maps_link;
-googleMapsElement.textContent = google_maps_link_button_text;
+if (googleMapsElement) {
+	// google_maps_link and google_maps_link_button_text is set in the variables.js file
+	googleMapsElement.href = google_maps_link;
+	googleMapsElement.textContent = google_maps_link_button_text;
+}
 
 // Update the services link (if used)
 const servicesElement = document.getElementById("services_link");
-// services_link and services_link_button_text is set in the variables.js file
-servicesElement.href = services_link;
-servicesElement.textContent = services_link_button_text;
+if (servicesElement) {
+	// services_link and services_link_button_text is set in the variables.js file
+	servicesElement.href = services_link;
+	servicesElement.textContent = services_link_button_text;
+}
 
 // Update the Instagram link (if used)
 const instagramElement = document.getElementById("instagram_link");
-// instagram_link and instagram_link_button_text is set in the variables.js file
-instagramElement.href = instagram_link;
-instagramElement.textContent = instagram_link_button_text;
+if (instagramElement) {
+	// instagram_link and instagram_link_button_text is set in the variables.js file
+	instagramElement.href = instagram_link;
+	instagramElement.textContent = instagram_link_button_text;
+}
